@@ -77,6 +77,24 @@ class _addfoodPageState extends State<addfoodPage> {
     if (response.statusCode == 400 || response.statusCode == 500) {
       selectedmat.clear();
     }
+    if(response.body == "\"link\" length must be at least 5 characters long")
+    {
+      errors('لینک داده شده بیش از حد کوتاه است');
+    } 
+    if(response.body == "\"recipe\" length must be at least 5 characters long")
+    {
+      errors('دستور غذای داده شده بیش از حد کوتاه است');
+    }
+    if (response.statusCode == 200)
+    {
+      errors('غذا با موفقیت اضافه شد');
+      Future.delayed(Duration(milliseconds: 1000), () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Main()),
+        );
+      });
+    }
   }
   // Future<void> Upload() async {
   //   print("gav1");
